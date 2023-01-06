@@ -1,0 +1,153 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-3">
+          <div class="card text-white bg-danger">
+            <div class="card-body">
+              <h5 class="card-title text-white">TOTAL EARNINGS</h5>
+              <p class="card-text">{{this.arr.total_earnings[0]['total_earnings']}}</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card text-dark bg-warning">
+            <div class="card-body">
+              <h5 class="card-title">AVERAGE_SALE</h5>
+              <p class="card-text">{{this.arr.average_sale[0]['average_sale']}}</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card text-white bg-success">
+              <div class="card-body">
+                <h5 class="card-title text-white">NEW ORDERS</h5>
+                <p class="card-text">{{this.arr.new_orders[0]['new_orders']}}</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card text-white bg-primary">
+              <div class="card-body">
+                <h5 class="card-title">SUMMARY</h5>
+                <p class="card-text text text-dark" data-toggle="modal" data-target="#exampleModal"
+                (click)="summaryData()" type="button" style="margin: 0px 0px 0px 0px;">Click for Details</p>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title text-dark" id="exampleModalLabel">ORDER SUMMARY</h5>
+                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Order Status</th>
+                                        <th scope="col">Count</th>            
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of sumArray">
+                                        <td>{{a.order_status}}</td>
+                                        <td>{{a.count}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-light" data-toggle="modal" data-target="#lastModal">
+    last 7 Days
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="lastModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">DETAILS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">DATE &TIME</th>
+                        <th scope="col">COUNT</th>            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of lastArray">
+                        <td>{{a.date}}</td>
+                        <td>{{a.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+      </div>
+
+
+<div class="row mt-3">
+    <div class="card">
+        <div class="col-lg-12">
+            <div class="table-responsive" >
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Billing_name</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Order_status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of array,let index as orderIndex">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-xs">{{i.id}}</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{i.billing_name}}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="badge badge-sm badge-success">{{i.amount}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-normal">{{i.date | date: 'dd/MM/yyyy'}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                        <span class="">{{i.order_status}}</span>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> 
+        </div>
+      </div>
+</div>
+</div>
+
+

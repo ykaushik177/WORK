@@ -1,0 +1,52 @@
+<div class="container">
+    <img src="https://thumbs.dreamstime.com/b/login-cube-text-d-white-background-92335654.jpg" class="img">
+    <div class="card card-container">
+        <p id="profile-name" class="card-title mx-auto">SIGN IN</p>
+        <form class="form-signin" [formGroup]="form" (ngSubmit)="enterForm()">
+            <div class="emailDiv">
+                <input type="username" id="inputEmail" class="form-control" 
+                placeholder="Username" formControlName="username" 
+                pattern="^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$" >
+            </div>
+            <div class="form-text text-danger" *ngIf="username.errors?.['required'] && (username.touched || username.dirty)">
+                Username is required
+            </div>
+            <div class="form-text text-danger" *ngIf="username.errors?.['pattern'] && (username.touched || username.dirty)">
+                Username is not valid
+            </div>
+            <div class="passDiv" style="position: relative; margin: 0px 0px">
+                <!-- <input [type]=" show ? 'password' : 'text'" id="inputPassword" 
+                class="form-control" placeholder="Password" formControlName="password" 
+                minlength="8" maxlength="20" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                 style="width: 70%;">
+                <button class="btn-secondry showBtn" (click)="showPass()">{{show ? 'Show' : 'Hide'}}</button> -->
+                <div class="input-group">
+                    <div class="form-outline">
+                      <input [type]=" show ? 'password' : 'text'" id="inputPassword" id="inputPassword" class="form-control"
+                      placeholder="Password" formControlName="password" 
+                      minlength="8" maxlength="20" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" />
+                    </div>
+                    <button type="button" class="btn btn-primary showBtn" (click)="showPass()">{{show ? 'Show' : 'Hide'}}
+                    </button>
+                  </div>
+            </div>
+
+            <div class="form-text text-danger" *ngIf="password.errors?.['required'] && (password.touched || password.dirty)">
+                Password is required
+            </div>
+            <div class="form-text text-danger" *ngIf="password.errors?.['pattern'] && (password.touched || password.dirty)">
+               Password is incorrect
+            </div>
+            <div class="form-text text-danger" *ngIf="password.errors?.['minlength'] && (password.touched || password.dirty)">
+                Password should be minimum 8 characters
+             </div>
+
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
+            [disabled]="!form.valid">Sign in</button>
+        </form><!-- /form -->
+        <a type="button" class="forgotDiv mx-auto">Forgot Password?</a>
+        <div class="signIn mx-auto">
+            <p class="text">Don't have an account? <a  class="forgotDiv" type="button">Sign-IN</a></p>
+        </div>
+    </div><!-- /card-container -->
+</div>
